@@ -42,5 +42,33 @@ createApp({
       }
       return []
     }
+  },
+  computed: {
+    fineTaxonomy () {
+      // assume the data is always correct
+      // structure: sector -> activity -> objective
+      if (this.taxonomy) {       
+        // add objectives to activities
+        let activities = this.taxonomy.activities.slice(0).map(activity => {
+          let objectives = this.taxonomy.matches.find(match => match.activity === activity.name)
+          if (objectives) {
+            activity.objectives = Object.assign({}, objectives)
+          } else {
+            activity.objectives = undefined
+          }
+          return activity
+        })
+
+        // attach activities to sectors
+        let output = []
+        output = this.taxonomy.sectors.slice(0).map(sector => {
+          sector.activities = activities.filter(activity => activity.sector === sector.name).slice(0)
+          return sector
+        })
+
+        return output
+      }
+      return []
+    }
   }
 }).mount('#app')

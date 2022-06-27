@@ -40,7 +40,7 @@
         <div id="app" class="container">
             <div v-if="taxonomy">
                 <div class="row row-cols-1 row-cols-md-4 g-4" style="margin: 1rem;">
-                    <div class="col" v-for="(sector, index_sector) in taxonomy.sectors" :key="index_sector">
+                    <div class="col" v-for="(sector, index_sector) in fineTaxonomy" :key="index_sector">
                         <component_sector :sector_obj="sector"/>
                     </div>
                 </div>
