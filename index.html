@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Another EU Taxonomy Compass</title>
+
+        <script src="https://unpkg.com/vue@3"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader/dist/vue3-sfc-loader.js"></script>
+        <script src="js/index.mjs" type="module"></script>
+
+        <!-- load bootstrap v5.2.0-beta1 -->
+        <script 
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" 
+            crossorigin="anonymous">
+        </script>
+        <link 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" 
+            crossorigin="anonymous"
+        />
+
+        <!-- load google font (free) -->
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+        <link href="css/index.css" ref="stylesheet" />
+    </head>
+    <body>
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">
+                    Another EU Taxonomy Compass
+                    <span style="font-size: 12px;">(v1.0.4)</span>
+                </span>
+            </div>
+        </nav>
+
+        <div id="app" class="container">
+            <div v-if="taxonomy">
+                <div class="row row-cols-1 row-cols-md-4 g-4" style="margin: 1rem;">
+                    <div class="col" v-for="(sector, index_sector) in taxonomy.sectors" :key="index_sector">
+                        <component_sector :sector_obj="sector"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
